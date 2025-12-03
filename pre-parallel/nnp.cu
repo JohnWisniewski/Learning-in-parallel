@@ -289,5 +289,3 @@ void predict(float *x, MODEL* model){
     for(int k=1;k<CLASSES;k++) if(outa[k]>max){ max=outa[k]; pred=k; }
     printf("Predicted digit: %d (confidence %.2f)\n", pred, max);
 }
-
-
