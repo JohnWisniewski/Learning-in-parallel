@@ -22,7 +22,7 @@
 #include "loader.h"
 #include "nnp.h"
 #include "kernels.h"
-#include "kernels.cu"
+
 /* Helper function to check CUDA errors */
 void checkCudaError(cudaError_t error, const char *file, int line) {
     if (error != cudaSuccess) {
