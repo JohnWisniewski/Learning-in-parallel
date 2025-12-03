@@ -14,21 +14,31 @@ echo "Neural Network Training on Darwin"
 echo "=========================================="
 echo "Date: $(date)"
 echo "Node: $(hostname)"
-echo "Working Directory: $(pwd)"
+echo "Initial Working Directory: $(pwd)"
+echo ""
+
+# Navigate to the directory where sbatch was executed (should be pre-parallel)
+if [ -n "$SLURM_SUBMIT_DIR" ]; then
+    cd "$SLURM_SUBMIT_DIR"
+    echo "=== Changed to SLURM submit directory: $(pwd) ==="
+else
+    # Fallback: try to find the script's directory
+    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    cd "$SCRIPT_DIR"
+    echo "=== Changed to script directory: $(pwd) ==="
+fi
+
+echo "=== Current directory: $(pwd) ==="
 echo ""
 
 # Set up environment
 echo "=== Setting up environment ==="
-workgroup -g ea-cisc372-silber
+# workgroup might already be set or not needed in batch jobs
+if command -v workgroup &> /dev/null; then
+    workgroup -g ea-cisc372-silber
+fi
 vpkg_require gcc
 vpkg_require cuda
-echo ""
-
-# Navigate to script directory (pre-parallel)
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR"
-
-echo "=== Current directory: $(pwd) ==="
 echo ""
 
 # Clean and compile
