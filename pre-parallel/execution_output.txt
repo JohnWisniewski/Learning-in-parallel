@@ -1,0 +1,40 @@
+==========================================
+Neural Network Training on Darwin
+==========================================
+Date: Wed Dec  3 14:37:12 EST 2025
+Node: r2v01
+Initial Working Directory: /home/4255/Learning-in-parallel/pre-parallel
+
+=== Changed to SLURM submit directory: /home/4255/Learning-in-parallel/pre-parallel ===
+=== Current directory: /home/4255/Learning-in-parallel/pre-parallel ===
+=== Verified: makefile found ===
+
+=== Setting up environment ===
+
+=== Compiling ===
+rm -f *.o model.bin
+rm -f nnp 
+nvcc  nnp.cu loader.cc main.cc -o nnp -lm
+
+=== Compilation successful ===
+
+=== Starting Training ===
+Time: Wed Dec  3 14:37:13 EST 2025
+
+Epoch 0, Loss=0.2438
+Epoch 1, Loss=0.0936
+Epoch 2, Loss=0.0635
+Epoch 3, Loss=0.0465
+Epoch 4, Loss=0.0347
+Trained model in 52 seconds
+
+=== Training Complete ===
+Exit code: 0
+Time: Wed Dec  3 14:38:06 EST 2025
+
+✓ Model file 'model.bin' created successfully
+-rw-r--r-- 1 johnwis ea-cisc372-silber 919K Dec  3 14:38 model.bin
+
+==========================================
+Job completed
+==========================================
